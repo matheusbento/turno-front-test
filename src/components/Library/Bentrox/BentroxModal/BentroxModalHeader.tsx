@@ -7,7 +7,7 @@ import { If, Then, Else, When } from "react-if";
 import { Link, To } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
 
-import { margin, padding, display, flex, colors } from "utils/theme";
+import { margin, padding, display, flex, colors } from "@utils/theme";
 
 const styleSegment = css(
   display.flex,

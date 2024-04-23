@@ -1,13 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
-import LoginContainer from "@views/Login/LoginContainer";
 import { Else, If, Then } from "react-if";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useAuth } from "../hooks/Auth";
 import Loading from "@components/Loading/Loading";
 import LoadingGate from "@components/LoadingGate/LoadingGate";
-import BentroxRoutes from "./Routes";
+import TRoutes from "./Routes";
+
+const LoginContainer = React.lazy(() => import("@views/Login/LoginContainer"));
 
 const RoutesContainer = () => {
   const { getAuthenticationHandler, wasFetched, loggedIn } = useAuth();
@@ -30,7 +31,7 @@ const RoutesContainer = () => {
   return (
     <LoadingGate waitFor={wasFetched} meanwhile={<Loading />}>
       <If condition={loggedIn}>
-        <Then>{() => <BentroxRoutes />}</Then>
+        <Then>{() => <TRoutes />}</Then>
         <Else>
           {() => (
             <BrowserRouter>

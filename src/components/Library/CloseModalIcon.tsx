@@ -22,7 +22,7 @@ const CloseModalIcon = ({
   >
     <SvgIcon
       className={`${css(display.block)}`}
-      path="icon-close"
+      path="fa/regular/circle-xmark"
       size="lg"
       color={colors.primary}
     />

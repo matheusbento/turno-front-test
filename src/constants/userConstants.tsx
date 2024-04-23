@@ -1,0 +1,1 @@
+export const typeAdmin = "admin";

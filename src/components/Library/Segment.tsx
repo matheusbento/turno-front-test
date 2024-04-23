@@ -53,6 +53,7 @@ const Segment = ({
   const childProps = { ...props };
   delete childProps.box;
 
+  console.log({test: `${styleBox} ${styleBorderRadius}`})
   return (
     <div
       className={`${styleBox} ${styleBorders} ${styleShadow} ${styleBorderRadius} ${styleMarginBottom} ${stylePadding}`}

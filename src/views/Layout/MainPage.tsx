@@ -3,6 +3,8 @@ import { useState, useMemo, ReactNode } from "react";
 import { colors, utils, display } from "@utils/theme";
 import { css } from "glamor";
 import Footer from "./Footer";
+import SidebarContainer from "./SidebarContainer";
+import HeaderContainer from "./HeaderContainer";
 
 const style100vh = css(utils.mvh100);
 const styleInnerContent = css(display.flex, {
@@ -72,10 +74,13 @@ const MainPage = ({ children }: MainPageProps) => {
   return (
     <div className={`page ${style100vh}`}>
       <div className={`${styleSidebar}`}>
-        SIDEBAR
+        <SidebarContainer />
       </div>
       <div className={`${styleContent}`}>
-        CONTENT
+        <HeaderContainer
+          setIsBarVisible={setVisible}
+          isBarVisible={visible}
+        />
         <div className={`${styleInnerContent}`}>{children}</div>
         <Footer />
       </div>

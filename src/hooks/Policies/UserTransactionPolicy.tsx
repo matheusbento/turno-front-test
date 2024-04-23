@@ -5,6 +5,8 @@ import {
   useMemo,
   ReactNode,
 } from "react";
+import { useAuth } from "../Auth";
+import { typeAdmin } from "@/constants/userConstants";
 
 export type UserTransactionPolicyContextType = {
   canAccess: () => boolean;
@@ -20,10 +22,11 @@ export interface UserTransactionPolicyProps {
 }
 
 const UserTransactionPolicyProvider = ({ children }: UserTransactionPolicyProps) => {
+  const {isAdmin} = useAuth();
 
   const canAccess = useCallback(() => true, []);
 
-  const canManage = useCallback(() => true, []);
+  const canManage = useCallback(() => isAdmin, [isAdmin]);
 
   const value = useMemo(
     () => ({

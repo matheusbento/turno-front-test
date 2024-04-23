@@ -1,3 +1,4 @@
+import React from "react";
 import { useUserTransactionPolicy } from "@/hooks/Policies/UserTransactionPolicy";
 import Code404 from "@views/Errors/Code404";
 import MainPage from "@/views/Layout/MainPage";
@@ -5,7 +6,8 @@ import { If, Then, Else } from "react-if";
 import { BrowserRouter, Route, Routes as RRDRoutes } from "react-router-dom";
 
 import PolicyProtectedRoute from "../components/Library/PolicyProtectedRoute";
-import HomeContainer from "@/views/Home/HomeContainer";
+
+const HomeContainer = React.lazy(() => import("@views/Home/HomeContainer"));
 
 const Routes = () => {
   const UserTransactionPolicy = useUserTransactionPolicy();

@@ -13,6 +13,7 @@ import { useToasts } from "react-toast-notifications";
 import api from "@helpers/api";
 
 import { SessionType } from "types/SessionType";
+import { typeAdmin } from "@/constants/userConstants";
 
 export type AuthContextType = {
   getAuthenticationHandler: () => Promise<void>;
@@ -26,6 +27,7 @@ export type AuthContextType = {
   loggedIn: boolean;
   wasFetched: boolean;
   loginHandler: (email: string, password: string) => void;
+  isAdmin: boolean;
 };
 
 export const Auth = createContext<AuthContextType | null>(null);
@@ -118,17 +120,18 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     []
   );
 
-  console.log({session, loggedSession})
-
   const loggedIn = useMemo(
     () => !!session?.user?.id || !!loggedSession,
     [session, loggedSession]
   );
 
-  console.log({ session, loggedSession });
-
   const isUserId = useCallback(
     (userId: string) => session?.user?.id === userId,
+    [session]
+  );
+
+  const isAdmin = useMemo(
+    () => session?.user?.type === typeAdmin,
     [session]
   );
 
@@ -147,8 +150,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       isLoadingLogout,
       headers,
       loginHandler,
+      isAdmin,
     }),
     [
+      isAdmin,
       loginHandler,
       loggedIn,
       wasFetched,

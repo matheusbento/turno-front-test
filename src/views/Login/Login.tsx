@@ -26,7 +26,7 @@ const Login = () => {
         style={{ height: "100vh" }}
         verticalAlign="middle"
       >
-        <Grid.Column style={{ maxWidth: 450 }}>
+        <Grid.Column style={{ maxWidth: 600 }}>
           <Header
             as="h2"
             textAlign="center"

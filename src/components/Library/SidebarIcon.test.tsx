@@ -2,11 +2,11 @@ import React from "react";
 
 import { render } from "@testing-library/react";
 
-import BentroxSidebarIcon from "./BentroxSidebarIcon";
+import SidebarIcon from "./SidebarIcon";
 
-describe("BentroxSidebarIcon component", () => {
+describe("SidebarIcon component", () => {
   it("should display an icon.", () => {
-    const { container } = render(<BentroxSidebarIcon path="test-path" />);
+    const { container } = render(<SidebarIcon path="test-path" />);
 
     const iconElement = container.querySelector(
       'span[data-src="/images/test-path.svg"]'
@@ -17,7 +17,7 @@ describe("BentroxSidebarIcon component", () => {
 
   it("should display an subItem.", () => {
     const { container } = render(
-      <BentroxSidebarIcon subItem path="test-path" />
+      <SidebarIcon subItem path="test-path" />
     );
 
     const iconElement = container.querySelector(

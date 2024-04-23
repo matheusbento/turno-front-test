@@ -1,19 +1,19 @@
 import SvgIcon from "@components/Library/SvgIcon";
 import { css } from "glamor";
 
-interface BentroxSidebarIconProps {
+interface SidebarIconProps {
   path: string;
   subItem?: boolean;
   color?: string;
   className?: string;
 }
 
-const BentroxSidebarIcon = ({
+const SidebarIcon = ({
   path,
   subItem = false,
   color = "",
   className,
-}: BentroxSidebarIconProps) => {
+}: SidebarIconProps) => {
   const styleIcon = css({
     cursor: "pointer",
   });
@@ -29,4 +29,4 @@ const BentroxSidebarIcon = ({
     />
   );
 };
-export default BentroxSidebarIcon;
+export default SidebarIcon;

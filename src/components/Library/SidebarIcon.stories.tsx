@@ -3,10 +3,10 @@ import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { colors } from "@utils/theme";
 
-import BentroxSidebarIcon from "./BentroxSidebarIcon";
+import SidebarIcon from "./SidebarIcon";
 
 export default {
-  title: "Bentrox/Bentrox Sidebar Icon",
+  title: "Sidebar Icon",
   argTypes: {
     path: {
       description: "Icon name",
@@ -46,10 +46,10 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof BentroxSidebarIcon>;
+} as ComponentMeta<typeof SidebarIcon>;
 
-const Template: ComponentStory<typeof BentroxSidebarIcon> = (args) => (
-  <BentroxSidebarIcon {...args} />
+const Template: ComponentStory<typeof SidebarIcon> = (args) => (
+  <SidebarIcon {...args} />
 );
 
 export const Default = Template.bind({});
