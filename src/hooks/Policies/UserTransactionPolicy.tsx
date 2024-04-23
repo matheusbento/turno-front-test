@@ -6,11 +6,11 @@ import {
   ReactNode,
 } from "react";
 import { useAuth } from "../Auth";
-import { typeAdmin } from "@/constants/userConstants";
 
 export type UserTransactionPolicyContextType = {
   canAccess: () => boolean;
   canManage: () => boolean;
+  canCustomerManage: () => boolean;
 };
 
 const UserTransactionPolicyContext = createContext<UserTransactionPolicyContextType | null>(
@@ -28,12 +28,15 @@ const UserTransactionPolicyProvider = ({ children }: UserTransactionPolicyProps)
 
   const canManage = useCallback(() => isAdmin, [isAdmin]);
 
+  const canCustomerManage = useCallback(() => !isAdmin, [isAdmin]);
+
   const value = useMemo(
     () => ({
       canAccess,
       canManage,
+      canCustomerManage,
     }),
-    [canAccess, canManage]
+    [canAccess, canCustomerManage, canManage]
   );
 
   return (

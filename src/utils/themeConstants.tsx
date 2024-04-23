@@ -33,7 +33,7 @@ export const colors: Record<string, string> = {
   transparent: "transparent",
 };
 
-const breakPoints: Record<string, string> = {
+export const breakPoints: Record<string, string> = {
   sm: "576px",
   md: "768px",
   lg: "992px",

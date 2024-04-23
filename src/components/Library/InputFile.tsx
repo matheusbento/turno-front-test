@@ -59,7 +59,7 @@ export interface InputFileProps {
   name: string;
   inputIcon?: string | null;
   required?: boolean;
-  formProps?: Record<string, any>;
+  formProps?: Record<string, unknown>;
   type?: string;
   min?: number;
 }

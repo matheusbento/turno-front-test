@@ -13,6 +13,7 @@ export const {
   position,
   border,
   flex,
+  breakPoints,
 } = ThemeConstants;
 
 export const hovers = {

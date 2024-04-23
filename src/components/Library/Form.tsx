@@ -1,56 +1,84 @@
-import { ReactNode, useEffect } from "react";
+import {memo, useEffect} from 'react'
 
-import { useForm, FormProvider, UseFormProps } from "react-hook-form";
-import { Form as SemanticForm } from "semantic-ui-react";
+import {useForm, FormProvider, ValidationMode, Resolver, CriteriaMode} from 'react-hook-form'
 
-export interface FormArgsProps {
-  mode: string;
-  reValidateMode: string;
-  defaultValues: Record<string, any>;
-  resolver?: string;
-  context?: string;
-  criteriaMode?: string;
-  shouldFocusError: boolean;
-  shouldUnregister: boolean;
-  shouldUseNativeValidation: boolean;
-  delayError: boolean | undefined;
+type RevalidateType = 'onBlur' | 'onChange' | 'onSubmit'
+
+interface IFormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  onSubmit?: (values: unknown) => void | Promise<void>
+  className?: string
+  formArgs?: {
+    mode?: keyof ValidationMode
+    reValidate?: RevalidateType
+    defaultValues?: unknown
+    resolver?: Resolver<unknown, unknown>
+    context?: unknown
+    criteriaMode?: CriteriaMode
+    shouldFocusError?: boolean
+    shouldUnregister?: boolean
+    shouldUseNativeValidation?: boolean
+    delayError?: number
+  }
+  children: React.ReactNode
+  formErrors?: unknown
 }
 
-export interface FormProps {
-  onSubmit: (props: any) => void;
-  children?: ReactNode;
-  formArgs?: UseFormProps;
+const formArgsDefault = {
+  mode: 'onSubmit' as keyof ValidationMode,
+  reValidateMode: 'onChange' as RevalidateType,
+  defaultValues: {},
+  resolver: undefined,
+  context: undefined,
+  criteriaMode: 'firstError' as CriteriaMode,
+  shouldFocusError: true,
+  shouldUnregister: false,
+  shouldUseNativeValidation: false,
+  delayError: undefined,
 }
 
-const Form = ({
+const Form: React.FC<IFormProps> = ({
   onSubmit,
-  formArgs = {
-    mode: "onSubmit",
-    reValidateMode: "onChange",
-    defaultValues: {},
-    resolver: undefined,
-    context: undefined,
-    criteriaMode: "firstError",
-    shouldFocusError: true,
-    shouldUnregister: false,
-    shouldUseNativeValidation: false,
-    delayError: undefined,
-  },
+  className,
+  formArgs = formArgsDefault,
+  formErrors = null,
   children,
-}: FormProps) => {
-  const methods = useForm(formArgs);
+  ...rest
+}) => {
+  const methods = useForm(formArgs)
 
   useEffect(() => {
-    methods.reset(formArgs?.defaultValues);
-  }, [formArgs?.defaultValues]); // eslint-disable-line react-hooks/exhaustive-deps
+    methods.reset(formArgs?.defaultValues)
+  }, [formArgs?.defaultValues]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (formErrors) {
+      Object.entries(formErrors).forEach(([key, value]) => {
+        methods.setError(key as never, {message: value[0]})
+      })
+    }
+  }, [formErrors]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <FormProvider {...methods}>
-      <SemanticForm onSubmit={methods.handleSubmit(onSubmit)}>
+      <form
+        {...rest}
+        className={className}
+        onSubmit={methods.handleSubmit(async (values) => {
+          try {
+            await onSubmit?.(values)
+          } catch (e: any) {
+            if (e?.response?.data?.errors) {
+              Object.entries(e.response.data.errors).forEach(([key, value]: [string, unknown]) => {
+                methods.setError(key as never, {message: (value as string[])[0]})
+              })
+            }
+          }
+        })}
+      >
         {children}
-      </SemanticForm>
+      </form>
     </FormProvider>
-  );
-};
+  )
+}
 
-export default Form;
+export default memo(Form)

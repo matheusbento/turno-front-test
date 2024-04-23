@@ -4,4 +4,5 @@ export type UserType = {
   password: string;
   name: string;
   type: string;
+  balance: number;
 };

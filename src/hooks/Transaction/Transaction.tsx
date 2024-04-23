@@ -12,6 +12,7 @@ import api from "@helpers/api";
 import { TransactionType } from "types/TransactionType";
 import { PaginateParamsType } from "@/types/PaginateParamsType";
 import { PaginationType } from "@/types/PaginationType";
+import { useAuth } from "../Auth";
 
 export type TransactionHookType = {
   fetchTransactionsHandler: (
@@ -31,6 +32,15 @@ export type TransactionHookType = {
     React.SetStateAction<TransactionType | null>
   >;
   manageDeposit: TransactionType | null;
+  isLoadingApprove: boolean;
+  isLoadingReject: boolean;
+  setIsAdding: React.Dispatch<React.SetStateAction<boolean>>;
+  isAdding: boolean;
+  isLoadingStore: boolean;
+  storeDepositHandler: (values: TransactionType) => Promise<void>;
+  setIsPurchasing: React.Dispatch<React.SetStateAction<boolean>>;
+  isPurchasing: boolean;
+  storePurchaseHandler: (values: TransactionType) => Promise<void>;
 };
 
 export const TransactionContext =
@@ -50,13 +60,17 @@ interface TransactionProviderProps {
 }
 
 const TransactionProvider = ({ children }: TransactionProviderProps) => {
+  const {getAuthenticationHandler} = useAuth();
   const [isLoadingTransactions, setIsLoadingTransactions] = useState(false);
   const [
     isLoadingTransactionDepositCheck,
     setIsLoadingTransactionDepositCheck,
   ] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
+  const [isPurchasing, setIsPurchasing] = useState(false);
   const [isLoadingApprove, setIsLoadingApprove] = useState(false);
   const [isLoadingReject, setIsLoadingReject] = useState(false);
+  const [isLoadingStore, setIsLoadingStore] = useState(false);
   const [transactionDepositCheck, setTransactionDepositCheck] =
     useState<string | null>(null);
   const [transactions, setTransactions] =
@@ -96,12 +110,6 @@ const TransactionProvider = ({ children }: TransactionProviderProps) => {
         setPagination(response.data.meta);
       } catch (e) {
         setTransactions([]);
-        // [todo]
-        // toaster(
-        //   dispatch,
-        //   'Error while trying to load the departmentSources',
-        //   'error'
-        // );
       } finally {
         setIsLoadingTransactions(false);
       }
@@ -136,6 +144,52 @@ const TransactionProvider = ({ children }: TransactionProviderProps) => {
       setManageDeposit(null);
     } catch (e) {
       setIsLoadingApprove(false);
+    } finally {
+      setIsLoadingApprove(false);
+    }
+  }, []);
+
+  const storeDepositHandler = useCallback(async (values: TransactionType) => {
+    try {
+      setIsLoadingStore(true);
+
+      const formData = new FormData();
+      formData.append("amount", String(values.amount));
+      formData.append("file", values.file[0]);
+
+      const config = {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      };
+
+      await api.post(`deposits/`, formData, config);
+
+      fetchTransactionsHandler();
+      getAuthenticationHandler();
+      setIsAdding(false);
+    } catch (e) {
+      setIsLoadingStore(false);
+      throw e;
+    } finally {
+      setIsLoadingStore(false);
+    }
+  }, []);
+
+  const storePurchaseHandler = useCallback(async (values: TransactionType) => {
+    try {
+      setIsLoadingStore(true);
+
+      await api.post(`purchases/`, values);
+
+      fetchTransactionsHandler();
+      getAuthenticationHandler();
+      setIsPurchasing(false);
+    } catch (e) {
+      setIsLoadingStore(false);
+      throw e;
+    } finally {
+      setIsLoadingStore(false);
     }
   }, []);
 
@@ -148,6 +202,8 @@ const TransactionProvider = ({ children }: TransactionProviderProps) => {
       fetchTransactionsHandler();
       setManageDeposit(null);
     } catch (e) {
+      setIsLoadingReject(false);
+    } finally {
       setIsLoadingReject(false);
     }
   }, []);
@@ -166,8 +222,20 @@ const TransactionProvider = ({ children }: TransactionProviderProps) => {
       rejectDepositHandler,
       setManageDeposit,
       manageDeposit,
+      isLoadingStore,
+      isLoadingApprove,
+      isLoadingReject,
+      setIsAdding,
+      isAdding,
+      storeDepositHandler,
+      setIsPurchasing,
+      isPurchasing,
+      storePurchaseHandler,
     }),
     [
+      storePurchaseHandler,
+      isLoadingStore,
+      storeDepositHandler,
       isLoadingTransactionDepositCheck,
       fetchTransactionsHandler,
       transactions,
@@ -180,6 +248,12 @@ const TransactionProvider = ({ children }: TransactionProviderProps) => {
       rejectDepositHandler,
       setManageDeposit,
       manageDeposit,
+      isLoadingApprove,
+      isLoadingReject,
+      setIsAdding,
+      isAdding,
+      setIsPurchasing,
+      isPurchasing,
     ]
   );
 

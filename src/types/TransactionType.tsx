@@ -1,6 +1,7 @@
 export type TransactionType = {
   id: number;
   amount: number;
+  file: FileList,
   type: string;
   operation: string;
   current_status: string;
