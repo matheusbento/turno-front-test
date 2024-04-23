@@ -1,7 +1,7 @@
-import BentroxTitle from "@components/Library/BentroxTitle";
-import ContentGroup from "@components/Library/ContentGroup";
-import Segment from "@components/Library/Segment";
-import { breakPoints, colors, margin, padding } from "@utils/themeConstants";
+import BentroxTitle from "@/components/Library/BentroxTitle";
+import ContentGroup from "@/components/Library/ContentGroup";
+import Segment from "@/components/Library/Segment";
+import { breakPoints, colors, margin, padding } from "@/utils/themeConstants";
 import { css } from "glamor";
 import { Grid, Menu } from "semantic-ui-react";
 import TransactionListContainer from "../Turno/Transaction/_List/TransactionListContainer";

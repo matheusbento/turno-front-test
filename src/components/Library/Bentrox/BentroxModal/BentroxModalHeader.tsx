@@ -1,13 +1,13 @@
 import { ReactNode } from "react";
 
-import CloseModalIcon from "@components/Library/CloseModalIcon";
-import Text from "@components/Library/Text";
+import CloseModalIcon from "@/components/Library/CloseModalIcon";
+import Text from "@/components/Library/Text";
 import { css } from "glamor";
 import { If, Then, Else, When } from "react-if";
 import { Link, To } from "react-router-dom";
 import { Segment } from "semantic-ui-react";
 
-import { margin, padding, display, flex, colors } from "@utils/theme";
+import { margin, padding, display, flex, colors } from "@/utils/theme";
 
 const styleSegment = css(
   display.flex,

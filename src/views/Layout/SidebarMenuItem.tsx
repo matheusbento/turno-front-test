@@ -1,5 +1,5 @@
-import SidebarIcon from "@components/Library/SidebarIcon";
-import { colors, text, padding, display } from "@utils/theme";
+import SidebarIcon from "@/components/Library/SidebarIcon";
+import { colors, text, padding, display } from "@/utils/theme";
 import { css } from "glamor";
 import { NavLink } from "react-router-dom";
 import { Icon } from "semantic-ui-react";

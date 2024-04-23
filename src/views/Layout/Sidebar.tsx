@@ -1,8 +1,8 @@
 
-import PolicyCheck from "@components/Library/PolicyCheck";
+import PolicyCheck from "@/components/Library/PolicyCheck";
 import { useAuth } from "@hooks/Auth";
 import { useUserTransactionPolicy } from "@hooks/Policies/UserTransactionPolicy";
-import { display, margin, padding, text } from "@utils/themeConstants";
+import { display, margin, padding, text } from "@/utils/themeConstants";
 import { css } from "glamor";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { Menu } from "semantic-ui-react";

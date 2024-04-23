@@ -1,6 +1,6 @@
 import { useState, useMemo, ReactNode } from "react";
 
-import { colors, utils, display } from "@utils/theme";
+import { colors, utils, display } from "@/utils/theme";
 import { css } from "glamor";
 import Footer from "./Footer";
 import SidebarContainer from "./SidebarContainer";

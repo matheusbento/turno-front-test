@@ -1,4 +1,4 @@
-import Segment from "@components/Library/Segment";
+import Segment from "@/components/Library/Segment";
 import {
   colors,
   display,
@@ -9,7 +9,7 @@ import {
   padding,
   position,
   utils,
-} from "@utils/theme";
+} from "@/utils/theme";
 import { css } from "glamor";
 import { When } from "react-if";
 import { Icon, Dropdown } from "semantic-ui-react";

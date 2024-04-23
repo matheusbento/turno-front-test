@@ -1,8 +1,8 @@
 import { ReactNode, useCallback } from "react";
 
-import SvgIcon from "@components/Library/SvgIcon";
-import { fontSizes, margin } from "@utils/theme";
-import { colors } from "@utils/themeConstants";
+import SvgIcon from "@/components/Library/SvgIcon";
+import { fontSizes, margin } from "@/utils/theme";
+import { colors } from "@/utils/themeConstants";
 import { css } from "glamor";
 import { When } from "react-if";
 import { Dropdown } from "semantic-ui-react";

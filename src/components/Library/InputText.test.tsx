@@ -1,6 +1,6 @@
 import React from "react";
 
-import Form from "@components/Library/Form";
+import Form from "@/components/Library/Form";
 import { render, fireEvent } from "@testing-library/react";
 
 import InputText from "./InputText";

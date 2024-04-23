@@ -1,5 +1,5 @@
-import SvgIcon from "@components/Library/SvgIcon";
-import { display, colors } from "@utils/theme";
+import SvgIcon from "@/components/Library/SvgIcon";
+import { display, colors } from "@/utils/theme";
 import { css } from "glamor";
 import { When } from "react-if";
 import { Dropdown } from "semantic-ui-react";

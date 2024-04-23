@@ -1,9 +1,9 @@
 /* eslint-disable no-plusplus */
 import { useLayoutEffect, useState } from "react";
 
-import * as fileTypes from "@constants/fileTypesConstants";
-import TypeOf from "@constants/typeOfConstants";
-import usStates from "@constants/usStatesConstants";
+import * as fileTypes from "@/constants/fileTypesConstants";
+import TypeOf from "@/constants/typeOfConstants";
+import usStates from "@/constants/usStatesConstants";
 import { isArray, isNaN } from "lodash";
 import moment from "moment-timezone";
 

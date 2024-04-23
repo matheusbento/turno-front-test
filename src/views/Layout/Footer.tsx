@@ -1,4 +1,4 @@
-import { display, colors, fontSizes, margin } from "@utils/themeConstants";
+import { display, colors, fontSizes, margin } from "@/utils/themeConstants";
 import { css } from "glamor";
 
 const Footer = () => {

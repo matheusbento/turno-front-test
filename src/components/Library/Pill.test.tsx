@@ -112,7 +112,7 @@ describe("Pill component", () => {
     const textElement = queryByText("Text Example");
 
     expect(textElement).toBeTruthy();
-    expect(textElement).toHaveProperty("href", "http://localhost/to");
+    expect(textElement).toHaveProperty("href", "http://localhost:3000/to");
   });
 
   it("should display a react router dom button component with icon.", () => {

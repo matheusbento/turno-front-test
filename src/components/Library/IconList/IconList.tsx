@@ -1,6 +1,6 @@
 import React, { ReactNode, useMemo } from "react";
 
-import { spacing, fontSizes } from "@utils/theme";
+import { spacing, fontSizes } from "@/utils/theme";
 import { css } from "glamor";
 
 import Item from "./Item";

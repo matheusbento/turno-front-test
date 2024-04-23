@@ -2,7 +2,7 @@
 import { css } from "glamor";
 import { Loader } from "semantic-ui-react";
 
-import { display, flex, utils } from "@utils/theme";
+import { display, flex, utils } from "@/utils/theme";
 
 const styleContainer = css(
   display.flex,

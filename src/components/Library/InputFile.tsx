@@ -1,7 +1,7 @@
 import { Component, useMemo } from "react";
 
-import buildFormField from "@utils/buildFormField";
-import { spacing } from "@utils/theme";
+import buildFormField from "@/utils/buildFormField";
+import { spacing } from "@/utils/theme";
 import { css } from "glamor";
 import { get } from "lodash";
 import { useFormContext } from "react-hook-form";

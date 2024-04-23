@@ -6,7 +6,7 @@ import {
   margin,
   padding,
   buttons,
-} from "@utils/theme";
+} from "@/utils/theme";
 import { css } from "glamor";
 import { Link } from "react-router-dom";
 

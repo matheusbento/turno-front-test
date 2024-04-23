@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { ReactNode } from "react";
 
-import { margin, padding, border, colors } from "@utils/theme";
+import { margin, padding, border, colors } from "@/utils/theme";
 import { css } from "glamor";
 import {
   Button as SemanticButton,

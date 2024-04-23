@@ -13,7 +13,7 @@ import {
   display,
   flex,
   padding,
-} from "@utils/themeConstants";
+} from "@/utils/themeConstants";
 
 const captionColors: Record<string, string> = {
   primary: colors.primary,

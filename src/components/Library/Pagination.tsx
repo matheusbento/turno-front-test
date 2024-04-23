@@ -5,7 +5,7 @@ import { When } from "react-if";
 import { Pagination as SemanticPagination } from "semantic-ui-react";
 
 import { useWindowWidth } from "@helpers/index";
-import { colors, text } from "@utils/theme";
+import { colors, text } from "@/utils/theme";
 import SvgIcon from "./SvgIcon";
 
 const aligns: any = {

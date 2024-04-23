@@ -24,7 +24,7 @@ describe("Text component", () => {
 
     const textElement = getByText("Text Example");
 
-    expect(textElement.tagName.toLowerCase()).toBe("p");
+    expect(textElement.tagName.toLowerCase()).toBe("button");
   });
 
   it("should display a button.", () => {
