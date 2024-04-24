@@ -233,7 +233,7 @@ const TransactionList = () => {
       />
       <BentroxModal
         title={"Manage Deposit"}
-        size="lg"
+        size="large"
         className={`${css({ top: 50 })}`}
         isClosable
         open={!!manageDeposit}
