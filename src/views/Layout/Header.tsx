@@ -1,4 +1,4 @@
-import Segment from "@/components/Library/Segment";
+import Segment from "@components/Library/Segment";
 import {
   colors,
   display,

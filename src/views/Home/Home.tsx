@@ -1,6 +1,6 @@
-import BentroxTitle from "@/components/Library/BentroxTitle";
-import ContentGroup from "@/components/Library/ContentGroup";
-import Segment from "@/components/Library/Segment";
+import BentroxTitle from "@components/Library/BentroxTitle";
+import ContentGroup from "@components/Library/ContentGroup";
+import Segment from "@components/Library/Segment";
 import { breakPoints, colors, margin, padding } from "@/utils/themeConstants";
 import { css } from "glamor";
 import { Grid, Menu } from "semantic-ui-react";
@@ -8,9 +8,9 @@ import TransactionListContainer from "../Turno/Transaction/_List/TransactionList
 import { When } from "react-if";
 import { useUserTransactionPolicy } from "@/hooks/Policies/UserTransactionPolicy";
 import { buttons } from "@/utils/theme";
-import SvgIcon from "@/components/Library/SvgIcon";
+import SvgIcon from "@components/Library/SvgIcon";
 import { useTransaction } from "@/hooks/Transaction/Transaction";
-import BentroxModal from "@/components/Library/Bentrox/BentroxModal/BentroxModal";
+import BentroxModal from "@components/Library/Bentrox/BentroxModal/BentroxModal";
 import UserTransactionDepositFormContainer from "./_Form/UserTransactionDepositFormContainer";
 import UserTransactionPurchaseFormContainer from "./_Form/UserTransactionPurchaseFormContainer";
 

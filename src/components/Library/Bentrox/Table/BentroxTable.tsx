@@ -8,14 +8,14 @@ import {
   useState,
 } from "react";
 
-import { SelectCell } from "@/components/Library/Bentrox/Table/BentroxTableCells";
-import Accordion from "@/components/Library/Accordion";
-import ModalConfirm from "@/components/Library/ModalConfirm";
-import Segment from "@/components/Library/Segment";
-import SortableTableHeader from "@/components/Library/SortableTableHeader";
-import SvgIcon from "@/components/Library/SvgIcon";
-import { loading as BentroxLoading } from "/@constants/BentroxTableConstants";
-import TypeOf from "/@constants/typeOfConstants";
+import { SelectCell } from "@components/Library/Bentrox/Table/BentroxTableCells";
+import Accordion from "@components/Library/Accordion";
+import ModalConfirm from "@components/Library/ModalConfirm";
+import Segment from "@components/Library/Segment";
+import SortableTableHeader from "@components/Library/SortableTableHeader";
+import SvgIcon from "@components/Library/SvgIcon";
+import { loading as BentroxLoading } from "@constants/BentroxTableConstants";
+import TypeOf from "@constants/typeOfConstants";
 import {
   colors,
   display,

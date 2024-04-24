@@ -4,11 +4,12 @@ import React, { useEffect } from "react";
 import { Else, If, Then } from "react-if";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useAuth } from "../hooks/Auth";
-import Loading from "@/components/Loading/Loading";
-import LoadingGate from "@/components/LoadingGate/LoadingGate";
+import Loading from "@components/Loading/Loading";
+import LoadingGate from "@components/LoadingGate/LoadingGate";
 import TRoutes from "./Routes";
 
 const LoginContainer = React.lazy(() => import("@views/Login/LoginContainer"));
+const RegisterContainer = React.lazy(() => import("@views/Register/RegisterContainer"));
 
 const RoutesContainer = () => {
   const { getAuthenticationHandler, wasFetched, loggedIn } = useAuth();
@@ -22,8 +23,7 @@ const RoutesContainer = () => {
 
   useEffect(() => {
     const { pathname } = window.location;
-    console.log({ pathname, wasFetched, loggedIn });
-    if (pathname !== "/login" && wasFetched && !loggedIn) {
+    if (!["/login", "/register"].includes(pathname) && wasFetched && !loggedIn) {
       window.location.href = "/login";
     }
   }, [wasFetched, loggedIn]);
@@ -37,6 +37,7 @@ const RoutesContainer = () => {
             <BrowserRouter>
               <Routes>
                 <Route path="/login" element={<LoginContainer />} />
+                <Route path="/register" element={<RegisterContainer />} />
               </Routes>
             </BrowserRouter>
           )}

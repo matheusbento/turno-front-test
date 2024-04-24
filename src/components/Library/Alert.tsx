@@ -1,7 +1,7 @@
 import { useMemo, memo, ReactNode } from "react";
 
-import IconList from "@/components/Library/IconList/IconList";
-import Text from "@/components/Library/Text";
+import IconList from "@components/Library/IconList/IconList";
+import Text from "@components/Library/Text";
 import { border, display, flex, padding } from "@/utils/themeConstants";
 import { css } from "glamor";
 import { Message } from "semantic-ui-react";

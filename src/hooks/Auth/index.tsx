@@ -14,6 +14,7 @@ import api from "@helpers/api";
 
 import { SessionType } from "types/SessionType";
 import { typeAdmin } from "@/constants/userConstants";
+import { UserType } from "@/types/UserType";
 
 export type AuthContextType = {
   getAuthenticationHandler: () => Promise<void>;
@@ -21,12 +22,14 @@ export type AuthContextType = {
   session: SessionType | null;
   isUserId: (userId: string) => boolean;
   isLoadingSession: boolean;
+  isLoadingRegister: boolean;
   isLoadingLogout: boolean;
   hasSession: () => boolean | undefined;
   headers: undefined;
   loggedIn: boolean;
   wasFetched: boolean;
   loginHandler: (email: string, password: string) => void;
+  registerHandler: (values: UserType) => void;
   isAdmin: boolean;
 };
 
@@ -47,6 +50,7 @@ interface AuthProviderProps {
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoadingSession, setIsLoadingSession] = useState(false);
+  const [isLoadingRegister, setIsLoadingRegister] = useState(false);
   const [isLoadingLogout, setIsLoadingLogout] = useState(false);
   const [session, setSession] = useState<SessionType | null>(null);
   const [headers, setHeaders] = useState();
@@ -89,31 +93,56 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     });
   }, [logout]);
 
-  const loginHandler = useCallback((email: string, password: string) => {
-    setIsLoadingSession(true);
-    setWasFetched(false);
+  const loginHandler = useCallback(
+    (email: string, password: string) => {
+      setIsLoadingSession(true);
+      setWasFetched(false);
 
-    api
-      .post("/login", { email, password })
-      .then((response: AxiosResponse) => {
-        setSession(response.data);
-        window.localStorage.setItem("userToken", JSON.stringify(response.data.access_token));
-        window.localStorage.setItem("isLogged", JSON.stringify(response.data));
-        setIsLoadingSession(false);
-        setWasFetched(true);
-        window.location.href = "/";
-      })
-      .catch((e) => {
-        console.log("error");
-        setIsLoadingSession(false);
-        setWasFetched(true);
+      api
+        .post("/login", { email, password })
+        .then((response: AxiosResponse) => {
+          setSession(response.data);
+          window.localStorage.setItem(
+            "userToken",
+            JSON.stringify(response.data.access_token)
+          );
+          window.localStorage.setItem(
+            "isLogged",
+            JSON.stringify(response.data)
+          );
+          setIsLoadingSession(false);
+          setWasFetched(true);
+          window.location.href = "/";
+        })
+        .catch((e) => {
+          console.log("error");
+          setIsLoadingSession(false);
+          setWasFetched(true);
 
-        addToast(e.response.data.message, {
-          appearance: "error",
-          placement: "top-center",
+          addToast(e.response.data.message, {
+            appearance: "error",
+            placement: "top-center",
+          });
         });
-      });
-  }, [addToast]);
+    },
+    [addToast]
+  );
+
+  const registerHandler = useCallback(
+    async (values: UserType) => {
+      setIsLoadingRegister(true);
+      try {
+        await api.post("/register", values);
+        addToast("User created successfully", { appearance: "success" });
+        setIsLoadingRegister(false);
+        window.location.href = "/";
+      } catch (e) {
+        setIsLoadingRegister(false);
+        throw e;
+      }
+    },
+    [addToast]
+  );
 
   const loggedSession = useMemo(
     () => window.localStorage.getItem("isLogged"),
@@ -130,10 +159,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     [session]
   );
 
-  const isAdmin = useMemo(
-    () => session?.user?.type === typeAdmin,
-    [session]
-  );
+  const isAdmin = useMemo(() => session?.user?.type === typeAdmin, [session]);
 
   const hasSession = useCallback(() => !!session, [session]);
 
@@ -151,8 +177,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
       headers,
       loginHandler,
       isAdmin,
+      registerHandler,
+      isLoadingRegister,
     }),
     [
+      isLoadingRegister,
+      registerHandler,
       isAdmin,
       loginHandler,
       loggedIn,

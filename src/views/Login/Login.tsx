@@ -1,9 +1,9 @@
 import { useCallback, useState } from "react";
 
-import Button from "@/components/Library/Button";
-import Segment from "@/components/Library/Segment";
+import Button from "@components/Library/Button";
+import Segment from "@components/Library/Segment";
 import { useAuth } from "@hooks/Auth";
-import { display, flex } from "@/utils/themeConstants";
+import { display, flex, margin } from "@/utils/themeConstants";
 import { css } from "glamor";
 import { Grid, Header, Form, Image } from "semantic-ui-react";
 
@@ -60,6 +60,18 @@ const Login = () => {
                 onClick={handleLogin}
               >
                 Login
+              </Button>
+
+              <Button
+                pill
+                outline
+                size="large"
+                className={`${css({ width: "100%" }, margin.topXs)}`}
+                onClick={() => {
+                  window.location.href = "/register";
+                }}
+              >
+                Register
               </Button>
             </Segment>
           </Form>

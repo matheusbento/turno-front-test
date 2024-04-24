@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-import CloseModalIcon from "@/components/Library/CloseModalIcon";
-import Text from "@/components/Library/Text";
+import CloseModalIcon from "@components/Library/CloseModalIcon";
+import Text from "@components/Library/Text";
 import { css } from "glamor";
 import { If, Then, Else, When } from "react-if";
 import { Link, To } from "react-router-dom";

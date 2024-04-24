@@ -1,4 +1,4 @@
-import SvgIcon from "@/components/Library/SvgIcon";
+import SvgIcon from "@components/Library/SvgIcon";
 import { display, colors } from "@/utils/theme";
 import { css } from "glamor";
 import { When } from "react-if";

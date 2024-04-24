@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-import Form from "@/components/Library/Form";
+import Form from "@components/Library/Form";
 import { useTransaction } from "@/hooks/Transaction/Transaction";
 
 import UserTransactionDepositForm from "./UserTransactionDepositForm";

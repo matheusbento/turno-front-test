@@ -4,13 +4,13 @@ import { useCallback, useMemo, useState } from "react";
 import { css } from "glamor";
 import { useTransaction } from "@/hooks/Transaction/Transaction";
 import { colors, display, flex, margin, padding } from "@/utils/themeConstants";
-import BentroxTable from "@/components/Library/Bentrox/Table/BentroxTable";
-import BentroxModal from "@/components/Library/Bentrox/BentroxModal/BentroxModal";
+import BentroxTable from "@components/Library/Bentrox/Table/BentroxTable";
+import BentroxModal from "@components/Library/Bentrox/BentroxModal/BentroxModal";
 import { TransactionType } from "@/types/TransactionType";
-import SvgIcon from "@/components/Library/SvgIcon";
+import SvgIcon from "@components/Library/SvgIcon";
 import moment from "moment";
 import { Case, Default, Else, If, Switch, Then, When } from "react-if";
-import Pagination from "@/components/Library/Pagination";
+import Pagination from "@components/Library/Pagination";
 import {
   currentStatusApproved,
   currentStatusPending,
@@ -20,8 +20,8 @@ import {
   typePurchase,
 } from "@/constants/TransactionConstants";
 import { formatMoney } from "@/utils/formatting";
-import Text from "@/components/Library/Text";
-import Segment from "@/components/Library/Segment";
+import Text from "@components/Library/Text";
+import Segment from "@components/Library/Segment";
 import TransactionModalContainer from "../Modal/TransactionModalContainer";
 import { useUserTransactionPolicy } from "@/hooks/Policies/UserTransactionPolicy";
 
@@ -233,7 +233,7 @@ const TransactionList = () => {
       />
       <BentroxModal
         title={"Manage Deposit"}
-        size="mini"
+        size="lg"
         className={`${css({ top: 50 })}`}
         isClosable
         open={!!manageDeposit}

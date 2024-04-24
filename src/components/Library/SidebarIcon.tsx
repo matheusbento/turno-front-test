@@ -1,4 +1,4 @@
-import SvgIcon from "@/components/Library/SvgIcon";
+import SvgIcon from "@components/Library/SvgIcon";
 import { css } from "glamor";
 
 interface SidebarIconProps {

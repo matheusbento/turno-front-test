@@ -1,18 +1,18 @@
 import { useCallback, useMemo } from "react";
 
 // import { usePark } from "@/hooks/Park";
-import Button from "@/components/Library/Button";
-import SvgIcon from "@/components/Library/SvgIcon";
+import Button from "@components/Library/Button";
+import SvgIcon from "@components/Library/SvgIcon";
 import { css } from "glamor";
 import { useFormContext } from "react-hook-form";
 import { Grid, Form as SemanticForm } from "semantic-ui-react";
 
 import { border, colors, display, margin, padding } from "@/utils/themeConstants";
 import { useTransaction } from "@/hooks/Transaction/Transaction";
-import InputMoney from "@/components/Library/InputMoney";
-import InputFile from "@/components/Library/InputFile";
+import InputMoney from "@components/Library/InputMoney";
+import InputFile from "@components/Library/InputFile";
 import { When } from "react-if";
-import Text from "@/components/Library/Text";
+import Text from "@components/Library/Text";
 
 const styleMr = css(margin.rightSm);
 

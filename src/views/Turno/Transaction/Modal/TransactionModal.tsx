@@ -1,5 +1,5 @@
-import Button from "@/components/Library/Button";
-import Segment from "@/components/Library/Segment";
+import Button from "@components/Library/Button";
+import Segment from "@components/Library/Segment";
 import { useTransaction } from "@/hooks/Transaction/Transaction";
 import { TransactionType } from "@/types/TransactionType";
 import { formatMoney } from "@/utils/formatting";

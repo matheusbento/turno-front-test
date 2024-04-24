@@ -3,8 +3,8 @@ import { css } from "glamor";
 
 import { display, fontWeight, fontSizes, margin } from "@/utils/theme";
 
-import InputCheckbox from "@/components/Library/InputCheckbox";
-import Segment from "@/components/Library/Segment";
+import InputCheckbox from "@components/Library/InputCheckbox";
+import Segment from "@components/Library/Segment";
 
 const styleNoInfo = css(fontSizes.xs, margin.none);
 

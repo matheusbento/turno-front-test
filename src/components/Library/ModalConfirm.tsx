@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, ReactNode } from "react";
 
-import BentroxModal from "@/components/Library/Bentrox/BentroxModal/BentroxModal";
+import BentroxModal from "@components/Library/Bentrox/BentroxModal/BentroxModal";
 import { When } from "react-if";
 import { Loader, Input } from "semantic-ui-react";
 
