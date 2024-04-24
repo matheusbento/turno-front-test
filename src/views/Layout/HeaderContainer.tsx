@@ -7,7 +7,7 @@ const HeaderContainer = (props: {
   isBarVisible: boolean;
 }) => {
   // todo - use contextx
-  const searchContext = "Shallpass";
+  const searchContext = "Turno";
   const { logoutHandler, session } = useAuth();
 
   return (
