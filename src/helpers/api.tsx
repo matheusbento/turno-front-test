@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import Config from "./config";
 
 const apiDefaultTimeout =
   (parseInt(import.meta.env.VITE_API_DEFAULT_TIMEOUT as string) || 60) * 1000;
@@ -11,7 +10,7 @@ export const getSession = async () => {
 };
 
 const api = axios.create({
-  baseURL: Config.SERVER_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout: apiDefaultTimeout,
   headers: {
     Accept: "application/json",
